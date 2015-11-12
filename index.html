@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <title>HTML5 video with css3 cover effect</title>
+    <meta name="description" content="HTML5 video with css3 cover effect made by Alina Tuchołka">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-1.11.3.js"></script>
+</head>
+<body>
+ 
+<!--   This video will center automatically - try it :)-->
+    <div class="video">
+        <video autoplay loop id="vid" src="at.mp4"></video>
+    </div>
+    
+</body>
+<script>
+    $(document).ready(function () {
+        
+//        at first I set our video container to be 100% width and height of the screen
+        
+            $(".video").css("width",$(window).width());
+            $(".video").css("height",$(window).height());
+        
+//        then I divided our video width through its height
+            var ratio = 1.778; 
+        
+//        and now I calculated what is the width of video if we set it to be 100% height
+            var videoWidth =$(window).height()*1.778;
+        
+//        this video width will be bigger than window width, so we need to  substract those values and divide it by 2
+            var abc = Math.floor(videoWidth-$(window).width())/2;
+        
+//        the same, but for height of video if it's set to be 100% width
+            var videoHeight =$(window).width()/1.778; 
+            var def = Math.floor(videoHeight-$(window).height())/2;
+        
+//        and now, if window ratio will be less or same as our video ratio, the video will be set to 100% width and will be centered
+        if ($(window).width() / $(window).height() <= ratio ){
+            $("#vid").css("margin-left",abc*-1);
+            $("#vid").css("height",$(window).height());
+        } else {
+            $("#vid").css("margin-top",def*-1);
+            $("#vid").css("width",$(window).width());
+        }
+//        and that's it :)
+//        made by Alina Tuchołka, front-end freelancer 
+    });
+</script>
+</html>
